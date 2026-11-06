@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/usr/bin/env bash
 # File: 1-install_nginx_web_server
 # Configures a new Ubuntu server with Nginx returning "Holberton School"
 
