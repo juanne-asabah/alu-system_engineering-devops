@@ -1,1 +1,158 @@
-#!/usr/bin/env bash
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Lost in Space</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Twinkling Stars Background */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 4s infinite alternate;
+            z-index: 1;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            z-index: 2;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        /* Glowing 404 Text */
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 8px;
+            background: linear-gradient(90deg, #00f2fe, #4facfe, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(79, 172, 254, 0.3);
+            line-height: 1;
+        }
+
+        /* Floating SVG Astronaut */
+        .astronaut {
+            width: 140px;
+            margin: 15px auto;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-18px) rotate(4deg); }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .magritte-quote {
+            font-style: italic;
+            color: #38bdf8;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: #090a0f;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+
+        <!-- Custom Inline SVG Astronaut -->
+        <svg class="astronaut" viewBox="0 0 200 200" xmlns="http://w3.org">
+            <!-- Backpack -->
+            <rect x="60" y="75" width="80" height="75" rx="15" fill="#64748b"/>
+            <!-- Body -->
+            <rect x="70" y="85" width="60" height="65" rx="20" fill="#f8fafc"/>
+            <!-- Chest Panel -->
+            <rect x="85" y="100" width="30" height="20" rx="4" fill="#cbd5e1"/>
+            <circle cx="93" cy="110" r="3" fill="#ef4444"/>
+            <circle cx="107" cy="110" r="3" fill="#22c55e"/>
+            <!-- Arms -->
+            <path d="M70 95 Q40 80 45 110" stroke="#f8fafc" stroke-width="14" stroke-linecap="round" fill="none"/>
+            <path d="M130 95 Q160 115 150 85" stroke="#f8fafc" stroke-width="14" stroke-linecap="round" fill="none"/>
+            <!-- Legs -->
+            <path d="M85 148 L75 180" stroke="#f8fafc" stroke-width="15" stroke-linecap="round"/>
+            <path d="M115 148 L128 175" stroke="#f8fafc" stroke-width="15" stroke-linecap="round"/>
+            <!-- Helmet -->
+            <circle cx="100" cy="58" r="34" fill="#f8fafc"/>
+            <!-- Visor -->
+            <rect x="76" y="42" width="48" height="30" rx="15" fill="#0f172a"/>
+            <!-- Visor Reflection -->
+            <path d="M84 48 Q95 45 112 50" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+
+        <h1>Houston, we have a problem.</h1>
+        <div class="magritte-quote">"Ceci n'est pas une page"</div>
+        <p>The page you are looking for has drifted into deep space or never existed in this universe.</p>
+        <a href="/" class="btn">Return to Earth</a>
+    </div>
+</body>
+</html>
