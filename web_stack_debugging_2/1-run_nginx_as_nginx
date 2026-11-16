@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Configures and runs Nginx as the nginx user listening on port 8080
+service nginx stop
 sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
 sed -i 's/80/8080/g' /etc/nginx/sites-available/default
-chown -R nginx:nginx /var/log/nginx /var/lib/nginx /var/run/nginx.pid 2>/dev/null || true
-pkill -f nginx || true
+touch /var/run/nginx.pid
+chown -R nginx:nginx /var/log/nginx /var/lib/nginx /var/run/nginx.pid
 sudo -u nginx nginx
