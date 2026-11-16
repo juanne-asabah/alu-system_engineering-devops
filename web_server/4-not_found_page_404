@@ -1,25 +1,38 @@
 #!/usr/bin/env bash
-# Configures Nginx with:
-# - Default page returning "Holberton School for the win!"
-# - 301 redirection on /redirect_me
-# - Custom 404 page returning "Ceci n'est pas une page"
+# Configures a new Ubuntu machine with Nginx, 301 redirection, and custom 404
 
-# Update package index and install Nginx
+# Update and install Nginx
 apt-get update -y
 apt-get install -y nginx
 
-# Configure default index page
+# Setup index page and custom 404 content
 echo "Holberton School for the win!" > /var/www/html/index.html
-
-# Configure custom 404 page
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-# Clean up any previous entries if re-run
-sed -i '/redirect_me/d' /etc/nginx/sites-available/default
-sed -i '/404.html/d' /etc/nginx/sites-available/default
+# Configure Nginx default site cleanly
+cat << 'EOF' > /etc/nginx/sites-available/default
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
 
-# Add 301 redirection and 404 custom error page configuration
-sed -i 's|server_name _;|\0\n\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}|' /etc/nginx/sites-available/default
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
 
-# Restart Nginx without systemctl
+    server_name _;
+
+    rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/html;
+        internal;
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+EOF
+
+# Restart Nginx service
 service nginx restart
