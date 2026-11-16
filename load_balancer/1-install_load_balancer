@@ -17,8 +17,8 @@ frontend http_front
 
 backend http_back
     balance roundrobin
-    server 7244-web-01 <WEB-01-IP>:80 check
-    server 7244-web-02 <WEB-02-IP>:80 check
+    server 7244-web-01 35.177.108.124:80 check
+    server 7244-web-02 18.171.134.109:80 check
 EOF
 
 service haproxy restart
