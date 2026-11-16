@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Configures Nginx with a custom X-Served-By HTTP response header
+
+apt-get update
+apt-get install -y nginx
+
+echo "Hello World!" > /var/www/html/index.html
+
+# Add 301 redirect and custom X-Served-By header inside the server block
+sed -i "/server_name _;/a \        add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sed -i '/server_name _;/a \        rewrite ^/redirect_me https://youtube.com permanent;' /etc/nginx/sites-available/default
+
+service nginx restart
