@@ -1,0 +1,20 @@
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_0$ cd ..
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops$ mkdir web_stack_debugging_1
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops$ cd web_stack_debugging_1
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_1$ nano 0-nginx_likes_port_80
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_1$ ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+ln: failed to create symbolic link '/etc/nginx/sites-enabled/default': Already exists
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_1$ docker run -p 8080:80 -d -it holbertonschool/265-1
+Unable to find image 'holbertonschool/265-1:latest' locally
+docker: Error response from daemon: pull access denied for holbertonschool/265-1, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_1$ CAT 0-nginx_likes_port_80
+Command 'CAT' not found, but can be installed with:
+sudo apt install cat-bat
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_1$ cat 0-nginx_likes_port_80
+#!/usr/bin/env bash
+# Fixes nginx so it listens on port 80 of all active IPv4 IPs
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+asabahjuanne@DESKTOP-21PM9KB:~/alu-system_engineering-devops/web_stack_debugging_1$
