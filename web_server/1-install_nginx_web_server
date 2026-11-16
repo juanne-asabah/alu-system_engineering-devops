@@ -1,23 +1,14 @@
 #!/usr/bin/env bash
-# File: 1-install_nginx_web_server
-# Configures a new Ubuntu server with Nginx returning "Holberton School"
+# Installs and configures an Nginx web server
 
 # Update package lists
 apt-get update -y
 
-# Install Nginx automatically without prompt
-apt-get install nginx -y
+# Install Nginx
+apt-get install -y nginx
 
-# Ensure the web root folder exists
-mkdir -p /var/www/html
-
-# Overwrite both common index paths to guarantee the text is served
-echo "Holberton School for the win!" > /var/www/html/index.nginx-debian.html
+# Configure the default page to return "Holberton School for the win!"
 echo "Holberton School for the win!" > /var/www/html/index.html
 
-# Force an explicit print of the required strings to satisfy stdout log grabbers
-echo "nginx"
-echo "Holberton School"
-
-# Start or restart the Nginx service without systemctl
+# Start/Restart Nginx using service (no systemctl)
 service nginx restart
